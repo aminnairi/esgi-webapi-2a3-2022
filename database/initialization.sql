@@ -9,5 +9,7 @@ CREATE TABLE users(
     lastname    VARCHAR(25) NOT NULL,
     role        VARCHAR(15) NOT NULL,
     password    CHAR(60)    NOT NULL,
-    token       VARCHAR(60)
+    token       VARCHAR(60) DEFAULT NULL
 ) ENGINE = InnoDB;
+
+INSERT INTO users(email, firstname, lastname, role, password) VALUES('administrator@esgi.fr', 'Administrator', 'ADMINISTRATOR', 'ADMINISTRATOR', 'password');

@@ -84,4 +84,6 @@ if ($route === "users") {
     }
 }
 
-echo "Not found";
+require __DIR__ . "/library/json-response.php";
+
+jsonResponse(404, [], ["success" => false, "error" => "Route not found"]);

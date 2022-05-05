@@ -5,9 +5,12 @@ require __DIR__ . "/../../library/get-database-connection.php";
 
 try {
     $id = 1;
-
     $databaseConnection = getDatabaseConnection();
-    $databaseConnection->query("DELETE FROM users WHERE id = $id");
+    $query = $databaseConnection->prepare("DELETE FROM users WHERE id = :id");
+
+    $query->execute([
+        "id" => $id
+    ]);
 
     jsonResponse(200, [], ["success" => true]);
 } catch (PDOException $exception) {

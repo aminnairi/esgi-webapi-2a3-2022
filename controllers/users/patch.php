@@ -13,7 +13,16 @@ try {
     $role = "USER";
     $password = "password";
 
-    $query = $databaseConnection->query("UPDATE users SET email = $email, firstname = $firstname, lastname = $lastname, role = $role, password = $password WHERE id = $id");
+    $query = $databaseConnection->prepare("UPDATE users SET email = :email, firstname = :firstname, lastname = :lastname, role = :role, password = :password WHERE id = :id");
+
+    $query->execute([
+        "id" => $id,
+        "email" => $email,
+        "firstname" => $firstname,
+        "lastname" => $lastname,
+        "role" => $role,
+        "password" => $password
+    ]);
 
     jsonResponse(200, [], ["success" => true]);
 } catch (PDOException $exception) {

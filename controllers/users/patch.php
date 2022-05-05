@@ -6,9 +6,9 @@ require __DIR__ . "/../../library/get-database-connection.php";
 try {
     $databaseConnection = getDatabaseConnection();
 
-    $id = 1;
+    $id = 4;
     $email = "email@domain.com";
-    $firstname = "firstnamek";
+    $firstname = "firstname";
     $lastname = "lastname";
     $role = "USER";
     $password = "password";

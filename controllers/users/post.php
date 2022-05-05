@@ -5,22 +5,10 @@ require __DIR__ . "/../../library/get-database-connection.php";
 
 try {
     $databaseConnection = getDatabaseConnection();
-
-    $email = "anairi@esgi.fr";
-    $firstname = "Amin";
-    $lastname = "NAIRI";
-    $role = "ADMINISTRATOR";
-    $password = "password";
-
+    $rawBody = file_get_contents("php://input");
+    $json = json_decode($rawBody, true);
     $query = $databaseConnection->prepare("INSERT INTO users(email, firstname, lastname, role, password) VALUES(:email, :firstname, :lastname, :role, :password)");
-
-    $query->execute([
-        "email" => $email,
-        "firstname" => $firstname,
-        "lastname" => $lastname,
-        "role" => $role,
-        "password" => $password
-    ]);
+    $query->execute($json);
 
     jsonResponse(201, [], ["success" => true]);
 } catch (PDOException $exception) {

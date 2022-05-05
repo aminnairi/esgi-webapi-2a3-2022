@@ -4,7 +4,7 @@ require __DIR__ . "/../../library/json-response.php";
 require __DIR__ . "/../../library/get-database-connection.php";
 
 try {
-    $id = 1;
+    $id = 2;
     $databaseConnection = getDatabaseConnection();
     $query = $databaseConnection->prepare("DELETE FROM users WHERE id = :id");
 

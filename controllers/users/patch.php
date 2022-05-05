@@ -2,27 +2,23 @@
 
 require __DIR__ . "/../../library/json-response.php";
 require __DIR__ . "/../../library/get-database-connection.php";
+require __DIR__ . "/../../library/get-json-body.php";
 
 try {
+    $json = getJsonBody();
+    $allowedKeys = ["firstname", "lastname", "email", "password", "role"];
+    $set = [];
+
+    foreach ($json as $key => $value) {
+        if (in_array($key, $allowedKeys)) {
+            $set[] = "$key = :$key";
+        }
+    }
+
+    $set = implode(", ", $set);
     $databaseConnection = getDatabaseConnection();
-
-    $id = 4;
-    $email = "email@domain.com";
-    $firstname = "firstname";
-    $lastname = "lastname";
-    $role = "USER";
-    $password = "password";
-
-    $query = $databaseConnection->prepare("UPDATE users SET email = :email, firstname = :firstname, lastname = :lastname, role = :role, password = :password WHERE id = :id");
-
-    $query->execute([
-        "id" => $id,
-        "email" => $email,
-        "firstname" => $firstname,
-        "lastname" => $lastname,
-        "role" => $role,
-        "password" => $password
-    ]);
+    $query = $databaseConnection->prepare("UPDATE users SET $set WHERE id = :id");
+    $query->execute($json);
 
     jsonResponse(200, [], ["success" => true]);
 } catch (PDOException $exception) {

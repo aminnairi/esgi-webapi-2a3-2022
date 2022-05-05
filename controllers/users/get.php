@@ -1,12 +1,10 @@
 <?php
 
 require __DIR__ . "/../../library/json-response.php";
-require __DIR__ . "/../../library/get-database-connection.php";
+require __DIR__ . "/../../models/users/get-users.php";
 
 try {
-    $databaseConnection = getDatabaseConnection();
-    $query = $databaseConnection->query("SELECT * FROM users;");
-    $users = $query->fetchAll();
+    $users = getUsers();
 
     jsonResponse(200, [], ["success" => true, "users" => $users]);
 } catch (PDOException $exception) {

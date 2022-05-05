@@ -2,15 +2,13 @@
 
 require __DIR__ . "/../../library/json-response.php";
 require __DIR__ . "/../../library/get-database-connection.php";
+require __DIR__ . "/../../library/get-json-body.php";
 
 try {
-    $id = 2;
+    $json = getJsonBody();
     $databaseConnection = getDatabaseConnection();
     $query = $databaseConnection->prepare("DELETE FROM users WHERE id = :id");
-
-    $query->execute([
-        "id" => $id
-    ]);
+    $query->execute($json);
 
     jsonResponse(200, [], ["success" => true]);
 } catch (PDOException $exception) {

@@ -12,4 +12,5 @@ CREATE TABLE users(
     token       VARCHAR(60) DEFAULT NULL
 ) ENGINE = InnoDB;
 
-INSERT INTO users(email, firstname, lastname, role, password) VALUES('administrator@esgi.fr', 'Administrator', 'ADMINISTRATOR', 'ADMINISTRATOR', 'password');
+INSERT INTO users(email, firstname, lastname, role, password) VALUES('administrator@esgi.fr', 'Administrator', 'ADMINISTRATOR', 'ADMINISTRATOR', '$2y$10$ipvHOMJ46Ed1.08P84EDbe3Nz4zoLRlIyHQJHvITWTgOeu/5NeNSK');
+

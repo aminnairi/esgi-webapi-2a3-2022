@@ -26,6 +26,11 @@ $route = isset($_REQUEST["route"]) ? $_REQUEST["route"] : "undefined";
  */
 $method = $_SERVER["REQUEST_METHOD"];
 
+if ($route === "login" && $method === "POST") {
+    require __DIR__ . "/controllers/login/post.php";
+    die();
+}
+
 if ($route === "users") {
     if ($method === "GET") {
         /**

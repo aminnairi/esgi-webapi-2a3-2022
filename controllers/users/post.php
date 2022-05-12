@@ -8,6 +8,7 @@ try {
     $json = getJsonBody();
     $databaseConnection = getDatabaseConnection();
     $query = $databaseConnection->prepare("INSERT INTO users(email, firstname, lastname, role, password) VALUES(:email, :firstname, :lastname, :role, :password)");
+    $json["password"] = password_hash($json["password"], PASSWORD_BCRYPT);
     $query->execute($json);
 
     jsonResponse(201, [], ["success" => true]);

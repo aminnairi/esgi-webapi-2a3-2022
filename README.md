@@ -2,4 +2,9 @@
 
 ## Contrôle continu
 
-- [ ] 12/05/2022 : QCM
+- [X] 12/05/2022 : QCM
+
+## À faire
+
+- [ ] Améliorer le code existant pour la route login et son contrôleur
+- [ ] Proposer une solution pour le contrôleur pour la déconnexion

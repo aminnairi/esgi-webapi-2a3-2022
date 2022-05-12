@@ -34,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"fsananes@esgi.fr\",\n    \"firstname\": \"Frédéric\",\n    \"lastname\": \"SANANES\",\n    \"role\": \"ADMINISTRATOR\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"email\": \"quentinhermiteau@esgi.fr\",\n    \"firstname\": \"Quentin\",\n    \"lastname\": \"HERMITEAU\",\n    \"role\": \"USER\",\n    \"password\": \"symfony\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -62,7 +62,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 4\n}",
+							"raw": "{\n    \"id\": 6\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -106,6 +106,58 @@
 							"path": [
 								"esgi-webapi-2a3-2022",
 								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"administrator@esgi.fr\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"logout"
 							]
 						}
 					},

@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "7c405d8a-2f57-4590-9871-fe7a30ba040b",
+		"name": "esgi-webapi-2a3-2022",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"fsananes@esgi.fr\",\n    \"firstname\": \"Frédéric\",\n    \"lastname\": \"SANANES\",\n    \"role\": \"ADMINISTRATOR\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update one user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"role\": \"ANONYMOUS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -12,5 +12,5 @@ try {
 
     jsonResponse(201, [], ["success" => true]);
 } catch (PDOException $exception) {
-    jsonResponse(500, [], ["success" => false]);
+    jsonResponse(500, [], ["success" => false, "error" => $exception->getMessage()]);
 }

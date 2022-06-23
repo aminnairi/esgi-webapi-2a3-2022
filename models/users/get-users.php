@@ -1,8 +1,9 @@
 <?php
 
-require __DIR__ . "/../../library/get-database-connection.php";
+require_once __DIR__ . "/../../library/get-database-connection.php";
 
-function getUsers() {
+function getUsers()
+{
     $databaseConnection = getDatabaseConnection();
     $query = $databaseConnection->query("SELECT * FROM users;");
     $users = $query->fetchAll();

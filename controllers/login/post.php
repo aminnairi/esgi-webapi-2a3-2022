@@ -9,41 +9,38 @@
 // À faire : renvoyer le token
 // À faire : transformer les requêtes en BDD vers des modèles
 
-require __DIR__ . "/../../library/json-response.php";
-require __DIR__ . "/../../library/get-json-body.php";
-require __DIR__ . "/../../library/get-database-connection.php";
+require_once __DIR__ . "/../../library/json-response.php";
+require_once __DIR__ . "/../../library/get-json-body.php";
+require_once __DIR__ . "/../../models/users/get-user-by-email.php";
+require_once __DIR__ . "/../../models/users/update-user-by-id.php";
+require_once __DIR__ . "/../../library/create-token.php";
+require_once __DIR__ . "/../../library/verify-passwords.php";
 
-$randomBytes = random_bytes(16);
+try {
+    $json = getJsonBody();
 
-$token = bin2hex($randomBytes);
+    $user = getUserByEmail($json["email"]);
 
-$databaseConnection = getDatabaseConnection();
+    if (!$user) {
+        jsonResponse(400, [], ["success" => false, "error" => "Bad credentials"]);
+        die();
+    }
 
-$query = $databaseConnection->prepare("SELECT * FROM users WHERE email = :email LIMIT 1;");
+    $hashedPassword = $user["password"];
 
-$json = getJsonBody();
+    $plainPassword = $json["password"];
 
-$query->execute([
-    "email" => $json["email"]
-]);
+    if (!verifyPasswords($plainPassword, $hashedPassword)) {
+        jsonResponse(400, [], ["success" => false, "error" => "Bad credentials"]);
+        die();
+    }
 
-$user = $query->fetch();
+    $token = createToken();
 
-if (!$user) {
-    jsonResponse(400, [], ["success" => false, "error" => "Bad credentials"]);
-    die();
+    updateUserById($user["id"], ["token" => $token]);
+
+    jsonResponse(200, [], ["success" => true, "token" => $token]);
+} catch (PDOException $exception) {
+    jsonResponse(500, [], ["success" => false, "error" => $exception->getMessage()]);
 }
 
-$hashedPassword = $user["password"];
-$plainPassword = $json["password"];
-
-if (!password_verify($plainPassword, $hashedPassword)) {
-    jsonResponse(400, [], ["success" => false, "error" => "Bad credentials"]);
-    die();
-}
-
-$query = $databaseConnection->prepare("UPDATE users SET token = :token WHERE id = :id");
-
-$query->execute(["id" => $user["id"], "token" => $token]);
-
-jsonResponse(200, [], ["success" => true, "token" => $token]);

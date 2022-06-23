@@ -1,24 +1,23 @@
 <?php
 
 require __DIR__ . "/../../library/json-response.php";
-require __DIR__ . "/../../library/get-database-connection.php";
 require __DIR__ . "/../../library/get-json-body.php";
+require __DIR__ . "/../../models/users/update-user-by-id.php";
+require __DIR__ . "/../../library/get-token-header.php";
+require __DIR__ . "/../../library/is-user-administrator-from-token.php";
 
 try {
-    $json = getJsonBody();
-    $allowedKeys = ["firstname", "lastname", "email", "password", "role"];
-    $set = [];
+    $token = getTokenHeader();
 
-    foreach ($json as $key => $value) {
-        if (in_array($key, $allowedKeys)) {
-            $set[] = "$key = :$key";
-        }
+    if (!isUserAdministratorFromToken($token)) {
+        jsonResponse(401, [], ["success" => false, "error" => "Unauthorized"]);
+
+        die();
     }
 
-    $set = implode(", ", $set);
-    $databaseConnection = getDatabaseConnection();
-    $query = $databaseConnection->prepare("UPDATE users SET $set WHERE id = :id");
-    $query->execute($json);
+    $json = getJsonBody();
+
+    updateUserById($json["id"], $json);
 
     jsonResponse(200, [], ["success" => true]);
 } catch (PDOException $exception) {

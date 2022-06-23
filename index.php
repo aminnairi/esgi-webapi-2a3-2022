@@ -31,13 +31,13 @@ $route = isset($_REQUEST["route"]) ? $_REQUEST["route"] : "undefined";
 $method = $_SERVER["REQUEST_METHOD"];
 
 if ($route === "login" && $method === "POST") {
-    include __DIR__ . "/controllers/login/post.php";
+    include_once __DIR__ . "/controllers/login/post.php";
 
     die();
 }
 
 if ($route === "logout" && $method === "POST") {
-    include __DIR__ . "/controllers/logout/post.php";
+    include_once __DIR__ . "/controllers/logout/post.php";
 
     die();
 }
@@ -49,7 +49,7 @@ if ($route === "users") {
          *
          * @see https://www.php.net/manual/en/function.require.php
          */
-        include __DIR__ . "/controllers/users/get.php";
+        include_once __DIR__ . "/controllers/users/get.php";
 
         /**
          * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
@@ -65,7 +65,7 @@ if ($route === "users") {
          *
          * @see https://www.php.net/manual/en/function.require.php
          */
-        include __DIR__ . "/controllers/users/post.php";
+        include_once __DIR__ . "/controllers/users/post.php";
 
         /**
          * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
@@ -81,7 +81,7 @@ if ($route === "users") {
          *
          * @see https://www.php.net/manual/en/function.require.php
          */
-        include __DIR__ . "/controllers/users/patch.php";
+        include_once __DIR__ . "/controllers/users/patch.php";
 
         /**
          * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
@@ -97,13 +97,39 @@ if ($route === "users") {
          *
          * @see https://www.php.net/manual/en/function.require.php
          */
-        include __DIR__ . "/controllers/users/delete.php";
+        include_once __DIR__ . "/controllers/users/delete.php";
 
         /**
          * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
          *
          * @see https://www.php.net/manual/en/function.die.php
          */
+        die();
+    }
+}
+
+if ($route === "articles") {
+    if ($method === "GET") {
+        include_once __DIR__ . "/controllers/articles/get.php";
+
+        die();
+    }
+
+    if ($method === "POST") {
+        include_once __DIR__ . "/controllers/articles/post.php";
+
+        die();
+    }
+
+    if ($method === "PATCH") {
+        include_once __DIR__ . "/controllers/articles/patch.php";
+
+        die();
+    }
+
+    if ($method === "DELETE") {
+        include_once __DIR__ . "/controllers/articles/delete.php";
+
         die();
     }
 }

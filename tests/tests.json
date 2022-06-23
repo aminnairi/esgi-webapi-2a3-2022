@@ -12,7 +12,13 @@
 					"name": "get all users",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "8a714e7978a34c160c59ddfcb3a0c642",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost/esgi-webapi-2a3-2022/users",
 							"protocol": "http",
@@ -31,10 +37,16 @@
 					"name": "create a new user",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "558feb1e65824eec4aba9cc970d717dd",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"quentinhermiteau@esgi.fr\",\n    \"firstname\": \"Quentin\",\n    \"lastname\": \"HERMITEAU\",\n    \"role\": \"USER\",\n    \"password\": \"symfony\"\n}",
+							"raw": "{\n    \"email\": \"thomascorio@esgi.fr\",\n    \"firstname\": \"Thomas\",\n    \"lastname\": \"CORIO\",\n    \"role\": \"USER\",\n    \"password\": \"symfony\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -59,10 +71,16 @@
 					"name": "delete a user",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "558feb1e65824eec4aba9cc970d717dd",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 6\n}",
+							"raw": "{\n    \"id\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -87,10 +105,16 @@
 					"name": "update one user",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "558feb1e65824eec4aba9cc970d717dd",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 1,\n    \"role\": \"ANONYMOUS\"\n}",
+							"raw": "{\n    \"id\": 6,\n    \"role\": \"USER\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,6 +173,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"558feb1e65824eec4aba9cc970d717dd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost/esgi-webapi-2a3-2022/logout",
 							"protocol": "http",
@@ -158,6 +191,138 @@
 							"path": [
 								"esgi-webapi-2a3-2022",
 								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "articles",
+			"item": [
+				{
+					"name": "get all articles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "8a714e7978a34c160c59ddfcb3a0c642",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update an article",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "8a714e7978a34c160c59ddfcb3a0c642",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"body\": \"Article pas intéressant\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create an article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "8a714e7978a34c160c59ddfcb3a0c642",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Super titre\",\n    \"body\": \"C'est un bon article fais moi confiance\",\n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete an article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "8a714e7978a34c160c59ddfcb3a0c642",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/esgi-webapi-2a3-2022/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"esgi-webapi-2a3-2022",
+								"articles"
 							]
 						}
 					},

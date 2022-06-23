@@ -10,7 +10,14 @@ CREATE TABLE users(
     role        VARCHAR(15) NOT NULL,
     password    CHAR(60)    NOT NULL,
     token       VARCHAR(60) DEFAULT NULL
-) ENGINE = InnoDB;
+) ENGINE=InnoDB;
+
+CREATE TABLE articles(
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(50) NOT NULL,
+  body TEXT NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id)
+) ENGINE=InnoDB;
 
 INSERT INTO users(email, firstname, lastname, role, password) VALUES('administrator@esgi.fr', 'Administrator', 'ADMINISTRATOR', 'ADMINISTRATOR', '$2y$10$ipvHOMJ46Ed1.08P84EDbe3Nz4zoLRlIyHQJHvITWTgOeu/5NeNSK');
 
